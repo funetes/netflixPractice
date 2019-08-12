@@ -1,6 +1,11 @@
-practice react
-practice react
-practice react
-practice react
-practice react
-practice react
+- practice react
+- practice react
+- practice react
+- practice react
+- practice react
+- practice react
+
+- [ ] Home
+- [ ] Tv Show
+- [ ] Search
+- [ ] Deatail
