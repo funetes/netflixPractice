@@ -1,7 +1,6 @@
-import React,{useState,useEffect} from 'react';
-import TVPresenter from './TVPresenter';
-import { tvApi } from '../../api';
-
+import React, { useState, useEffect } from "react";
+import TVPresenter from "./TVPresenter";
+import { tvApi } from "../../api";
 
 export default () => {
   const [popular, setPopular] = useState(null);
@@ -12,27 +11,33 @@ export default () => {
 
   useEffect(() => {
     (async () => {
-      try{
-        const {data:{results:popular}} = await tvApi.popular(); 
-        const {data:{results:topRated}} = await tvApi.topRated(); 
-        const {data:{results:airingToday}} = await tvApi.airingToday(); 
+      try {
+        const {
+          data: { results: popular }
+        } = await tvApi.popular();
+        const {
+          data: { results: topRated }
+        } = await tvApi.topRated();
+        const {
+          data: { results: airingToday }
+        } = await tvApi.airingToday();
         setPopular(popular);
         setTopRated(topRated);
         setAiringToday(airingToday);
-      }catch{
+      } catch {
         setError("can't get infomation... try again.");
-      }finally{
+      } finally {
         setLoading(false);
       }
-    })()
-  }, [])
-  console.log(popular);
-  return(
-    <TVPresenter 
+    })();
+  }, []);
+  return (
+    <TVPresenter
       airingToday={popular}
       topRated={topRated}
       popular={airingToday}
       loading={loading}
       error={error}
-    />)
-  };
+    />
+  );
+};
