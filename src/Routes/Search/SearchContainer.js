@@ -24,7 +24,7 @@ export default () => {
 
   const onSubmit = () => {
     if(searchTerm !== ""){
-      searchByTerm();
+      searchByTerm(searchTerm);
     }
   };
   

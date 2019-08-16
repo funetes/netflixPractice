@@ -15,6 +15,8 @@ export const moviesApi = {
   popular: () => api.get("movie/popular"),
   movieDetail: id => api.get(`movie/${id}`,{
     params:{
+      api_key: "972a62077fbae5a4d9e292d8c640eced",
+      language: "en-US",
       append_to_response: "videos"
     }
   }),
@@ -31,6 +33,8 @@ export const tvApi = {
   airingToday: () => api.get("tv/airing_today"),
   tvDetail: id => api.get(`tv/${id}`,{
     params : {
+      api_key: "972a62077fbae5a4d9e292d8c640eced",
+      language: "en-US",
       append_to_response: "videos"
     }
   }),
