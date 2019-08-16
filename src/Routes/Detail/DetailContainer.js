@@ -8,7 +8,7 @@ export default ({match,history,location}) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  //validate url
+  //validate
   useEffect(() => {
     const {params:{id}} = match;
     const {push} = history;
@@ -31,12 +31,12 @@ export default ({match,history,location}) => {
       }
     })();
   },[]);
-  console.log(result);
+
   return (
     <DetailPresenter 
-      result = {result}
-      loading = {loading}
-      error = {error}
+      result={result}
+      loading={loading}
+      error={error}
     />
   )
 }
