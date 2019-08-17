@@ -97,7 +97,7 @@ const Production = styled.div`
   opacity: 0.5;
 `;
 
-const DetailPresenter = ({ result, loading, error, isMovie }) =>
+const DetailPresenter = ({ result, loading, error }) =>
   loading ? (
     <>
       <Helmet>
