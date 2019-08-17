@@ -12,7 +12,7 @@ const Text = styled.span`
   font-size: 20px;
 `;
 
-const Message = ({ color, text }) => (
+const Message = ({ color = "#FFF", text }) => (
   <Container>
     <Text color={color}>{text}</Text>
   </Container>
