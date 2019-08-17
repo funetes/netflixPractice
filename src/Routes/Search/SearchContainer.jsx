@@ -23,6 +23,7 @@ export default () => {
       setError("can't find result..");
     } finally {
       setLoading(false);
+      setSearchTerm("");
     }
   };
 

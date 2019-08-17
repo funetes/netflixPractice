@@ -6,6 +6,8 @@ export default ({ match, history, location }) => {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isMovie, setIsMovie] = useState(null);
+
   const fetchResult = async () => {
     const { push } = history;
     const {
@@ -26,6 +28,7 @@ export default ({ match, history, location }) => {
       setError("can't find movie or tvshow...");
     } finally {
       setLoading(false);
+      setIsMovie(isMovie);
     }
   };
 
@@ -33,5 +36,12 @@ export default ({ match, history, location }) => {
     fetchResult();
   }, []);
 
-  return <DetailPresenter result={result} loading={loading} error={error} />;
+  return (
+    <DetailPresenter
+      result={result}
+      loading={loading}
+      error={error}
+      isMovie={isMovie}
+    />
+  );
 };
