@@ -72,6 +72,7 @@ const OverView = styled.p`
   width: 70%;
   line-height: 1.5;
   margin-bottom: 10px;
+  margin-top: 10px;
 `;
 
 const ImDb = styled.a`
@@ -84,22 +85,55 @@ const ImDb = styled.a`
 const Youtube = styled.iframe`
   width: 70%;
   height: 200px;
-  border: 1px solid white;
   margin-right: 10px;
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 20px;
 `;
 
 const InfoContainer = styled.div`
+  /* display: flex; */
+  /* align-items: center; */
+`;
+
+const Production = styled.span`
+  padding: 5px 0px;
+  margin-bottom: 10px;
+`;
+const Seasons = styled.div`
   display: flex;
-  align-items: center;
+  justify-content: center;
+  margin: 10px 0px;
 `;
-
-const Production = styled.div`
-  opacity: 0.5;
+const SeasonPoster = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: white;
+  font-weight: 600;
+  margin: 5px;
+  height: 130px;
+  width: 100px;
+  background-size: cover;
+  background-position: center center;
+  transition: opacity 0.2s linear;
+  border-radius: 4px;
+  background-image: url(${props => props.bgImage});
 `;
-
+const SeasonName = styled.h3`
+  font-size: 10px;
+  padding: 3px;
+`;
+const Wrapper = styled.div`
+  opacity: 0.7;
+  margin-bottom: 15px;
+  background-color: black;
+  border-radius: 3px;
+`;
 const DetailPresenter = ({ result, loading, error }) =>
   loading ? (
     <>
+      {console.log(result)}
       <Helmet>
         <title>Loading | nomflix</title>
       </Helmet>
@@ -166,28 +200,64 @@ const DetailPresenter = ({ result, loading, error }) =>
               imdb
             </ImDb>
           </ItemContainer>
+          {result.production_companies.map((companie, index) => (
+            <Production key={companie.id}>
+              {index === result.production_companies.length - 1
+                ? companie.name
+                : `${companie.name} / `}
+            </Production>
+          ))}
+          <Divider> · </Divider>
+          {result.production_countries
+            ? result.production_countries.map((country, index) => (
+                <Production key={index}>
+                  {index === result.production_countries.length - 1
+                    ? country.name
+                    : `${country.name} / `}
+                </Production>
+              ))
+            : result.origin_country.map((country, index) => (
+                <Production key={index}>
+                  {index === result.origin_country.length - 1
+                    ? country
+                    : `${country} / `}
+                </Production>
+              ))}
           <OverView>{result.overview}</OverView>
           <InfoContainer>
             <Youtube
-              src={`https://www.youtube.com/embed/${
-                result.videos.results[0].key
-              }`}
+              src={
+                result.videos.results.length > 0
+                  ? `https://www.youtube.com/embed/${result.videos.results[0].key}`
+                  : null
+              }
               frameBorder='0'
               allow='autoplay; encrypted-media'
               allowFullScreen
               title='video'
             />
-            <Production>
-              <img
-                src={`https://image.tmdb.org/t/p/w200${
-                  result.production_companies[0].logo_path
-                }`}
-                alt='production_companies'
-              />
-            </Production>
           </InfoContainer>
         </Data>
       </Content>
+      <Seasons>
+        {result &&
+          result.seasons &&
+          result.seasons.map(season => (
+            <>
+              <SeasonPoster
+                key={season.id}
+                bgImage={
+                  season.poster_path
+                    ? `https://image.tmdb.org/t/p/original${season.poster_path}`
+                    : require("../../assets/noImage.png")
+                }>
+                <Wrapper>
+                  <SeasonName key={season.id}>{season.name}</SeasonName>
+                </Wrapper>
+              </SeasonPoster>
+            </>
+          ))}
+      </Seasons>
       {error && <Message color='e74c3c' text={error} />}
     </Container>
   );
