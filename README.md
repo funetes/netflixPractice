@@ -1,11 +1,8 @@
-- practice react
-- practice react
-- practice react
-- practice react
-- practice react
-- practice react
+Neflix clone project
 
-- [ ] Home
-- [ ] Tv Show
-- [ ] Search
-- [ ] Deatail
+using react
+
+- [x] Home
+- [x] Tv Show
+- [x] Search
+- [x] Deatail
