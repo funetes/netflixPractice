@@ -18,8 +18,10 @@
 
 ### Demonstration
 
-home, tv, detail
+##### home, tv, detail
+
 ![Alt text](img/home&TV&Deatil.gif)
 
-search
+##### search
+
 ![Alt text](img/search.gif)
