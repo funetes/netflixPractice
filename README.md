@@ -20,8 +20,12 @@
 
 ##### home, tv, detail
 
-![Alt text](img/home&TV&Deatil.gif)
+<p align="center">
+  <img src='img/home&TV&Deatil.gif'/>
+</p>
 
 ##### search
 
-![Alt text](img/search.gif)
+<p align="center">
+  <img src='img/search.gif'/>
+</p>
